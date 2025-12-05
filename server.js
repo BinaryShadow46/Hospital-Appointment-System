@@ -27,6 +27,11 @@
 ‎    }
 ‎}
 ‎
+‎// Basic route
+‎app.get('/', (req, res) => {
+‎    res.sendFile(__dirname + '/index.html');
+‎});
+‎
 ‎// API Routes
 ‎
 ‎// Get all appointments
@@ -106,10 +111,17 @@
 ‎    }
 ‎});
 ‎
+‎// Error handling
+‎app.use((err, req, res, next) => {
+‎    console.error(err.stack);
+‎    res.status(500).json({ error: 'Something went wrong!' });
+‎});
+‎
 ‎// Start server
 ‎if (require.main === module) {
-‎    app.listen(PORT, () => {
-‎        console.log(`Server running on port ${PORT}`);
-‎    });
+‎    app.listen(PORT, () => {
+‎        console.log(`Server running on port ${PORT}`);
+‎    });
 ‎}
 ‎
+‎module.exports = app;
