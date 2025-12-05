@@ -344,3 +344,60 @@ function importAppointments(event) {
 // Add to window object for global access
 window.exportAppointments = exportAppointments;
 window.importAppointments = importAppointments;
+
+// Simulate SMS using localStorage
+function simulateSMS(phone, message) {
+    console.log(`📱 SMS to ${phone}: ${message}`);
+    
+    // Store in local storage
+    const smsHistory = JSON.parse(localStorage.getItem('smsHistory')) || [];
+    smsHistory.push({
+        phone,
+        message,
+        timestamp: new Date().toISOString(),
+        delivered: true
+    });
+    localStorage.setItem('smsHistory', JSON.stringify(smsHistory));
+    
+    // Show notification on screen
+    if (Notification.permission === 'granted') {
+        new Notification('Hospital SMS', {
+            body: message,
+            icon: '/favicon.ico'
+        });
+    }
+}
+// Add to app.js
+async function simulateMPesaPayment(phone, amount, appointmentId) {
+    const payment = {
+        id: Date.now(),
+        phone,
+        amount,
+        appointmentId,
+        status: 'pending',
+        timestamp: new Date().toISOString()
+    };
+    
+    // Simulate payment processing
+    setTimeout(() => {
+        payment.status = 'completed';
+        alert(`Malipo ya ${amount} Tsh imethibitishwa!`);
+    }, 3000);
+    
+    return payment;
+}
+// Request notification permission
+if ('Notification' in window) {
+    Notification.requestPermission().then(permission => {
+        if (permission === 'granted') {
+            console.log('Notification permission granted');
+        }
+    });
+}
+
+// Send notification
+function sendNotification(title, body) {
+    if (Notification.permission === 'granted') {
+        new Notification(title, { body, icon: '/icon.png' });
+    }
+}
