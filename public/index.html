@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏥 Hospitali Ya Jamii - Panga Miadi Mtandaoni</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏥</text></svg>">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <i class="fas fa-hospital-alt"></i>
+                <span>Hospitali Ya Jamii</span>
+            </div>
+            <div class="nav-links">
+                <a href="#home" class="nav-link active"><i class="fas fa-home"></i> Nyumbani</a>
+                <a href="#book" class="nav-link"><i class="fas fa-calendar-plus"></i> Panga Miadi</a>
+                <a href="#doctors" class="nav-link"><i class="fas fa-user-md"></i> Madaktari</a>
+                <a href="#appointments" class="nav-link"><i class="fas fa-list"></i> Miadi Yangu</a>
+                <a href="#about" class="nav-link"><i class="fas fa-info-circle"></i> Kuhusu</a>
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Panga Miadi ya Hospitali <span class="highlight">Mtandaoni</span></h1>
+                <p>Chagua daktari, chagua tarehe, upokee uthibitisho. Huduma bora za afya ziko mkonomi mwako.</p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <h3 id="totalDoctors">50+</h3>
+                        <p>Madaktari</p>
+                    </div>
+                    <div class="stat">
+                        <h3 id="todayAppointments">100+</h3>
+                        <p>Miadi Leo</p>
+                    </div>
+                    <div class="stat">
+                        <h3>24/7</h3>
+                        <p>Huduma Dharura</p>
+                    </div>
+                    <div class="stat">
+                        <h3>15min</h3>
+                        <p>Wasaa wa Kukodisha</p>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#book" class="btn btn-primary">
+                        <i class="fas fa-calendar-plus"></i> Panga Miadi Sasa
+                    </a>
+                    <a href="#doctors" class="btn btn-secondary">
+                        <i class="fas fa-user-md"></i> Angalia Madaktari
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&h=600&fit=crop" alt="Hospital Staff">
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="book" class="section booking-section">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-calendar-alt"></i> Panga Miadi Mpya</h2>
+                <p>Jaza fomu hapa chini kupanga miadi yako</p>
+            </div>
+            
+            <div class="booking-container">
+                <form id="bookingForm" class="booking-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="patientName"><i class="fas fa-user"></i> Jina Kamili *</label>
+                            <input type="text" id="patientName" placeholder="Ingiza jina lako kamili" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="patientPhone"><i class="fas fa-phone"></i> Namba ya Simu *</label>
+                            <input type="tel" id="patientPhone" placeholder="07XXXXXXXX" pattern="[0-9]{10}" required>
+                            <small class="form-hint">Ingiza 10 tarakimu (07 au 06)</small>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="patientEmail"><i class="fas fa-envelope"></i> Barua Pepe (si lazima)</label>
+                            <input type="email" id="patientEmail" placeholder="name@example.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="appointmentDate"><i class="fas fa-calendar-day"></i> Tarehe ya Miadi *</label>
+                            <input type="date" id="appointmentDate" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="department"><i class="fas fa-stethoscope"></i> Chagua Idara *</label>
+                            <select id="department" required>
+                                <option value="">Chagua idara...</option>
+                                <option value="general">Matibabu ya Jumla</option>
+                                <option value="pediatrics">Watoto (Pediatrics)</option>
+                                <option value="surgery">Upasuaji</option>
+                                <option value="dental">Menyo</option>
+                                <option value="eye">Macho</option>
+                                <option value="maternity">Ujauzito</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="doctor"><i class="fas fa-user-md"></i> Chagua Daktari *</label>
+                            <select id="doctor" required disabled>
+                                <option value="">Chagua daktari...</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="appointmentTime"><i class="fas fa-clock"></i> Chagua Muda *</label>
+                            <select id="appointmentTime" required disabled>
+                                <option value="">Chagua muda...</option>
+                            </select>
+                            <div id="timeSlots" class="time-slots"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="symptoms"><i class="fas fa-notes-medical"></i> Dalili / Maelezo</label>
+                            <textarea id="symptoms" rows="3" placeholder="Elezea dalili zako au sababu ya kukodisha..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-large">
+                            <i class="fas fa-paper-plane"></i> Wasilisha Ombi la Miadi
+                        </button>
+                        <button type="reset" class="btn btn-secondary">
+                            <i class="fas fa-redo"></i> Futa Fomu
+                        </button>
+                    </div>
+                    
+                    <div id="formMessage" class="message"></div>
+                </form>
+                
+                <div class="booking-summary">
+                    <h3><i class="fas fa-receipt"></i> Muhtasari wa Miadi</h3>
+                    <div class="summary-content">
+                        <div class="summary-item">
+                            <span class="label">Jina:</span>
+                            <span id="summaryName" class="value">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">Simu:</span>
+                            <span id="summaryPhone" class="value">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">Tarehe:</span>
+                            <span id="summaryDate" class="value">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">Muda:</span>
+                            <span id="summaryTime" class="value">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">Daktari:</span>
+                            <span id="summaryDoctor" class="value">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">Idara:</span>
+                            <span id="summaryDepartment" class="value">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">Hali:</span>
+                            <span class="value status-badge status-pending">Inasubiri</span>
+                        </div>
+                    </div>
+                    <div class="booking-tips">
+                        <h4><i class="fas fa-lightbulb"></i> Vidokezo:</h4>
+                        <ul>
+                            <li>Kamilisha fomu kwa usahihi</li>
+                            <li>Wasili dakika 15 mapema</li>
+                            <li>Leta vitambulisho vyako</li>
+                            <li>Pata ujumbe wa uthibitisho</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Doctors Section -->
+    <section id="doctors" class="section doctors-section">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-user-md"></i> Timu Yetu ya Madaktari</h2>
+                <p>Wataalamu waliohitimu na wenye uzoefu</p>
+            </div>
+            
+            <div class="doctors-grid" id="doctorsGrid">
+                <!-- Doctors will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- My Appointments Section -->
+    <section id="appointments" class="section appointments-section">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-list"></i> Miadi Yangu</h2>
+                <p>Angalia na udhibiti miadi yako yote</p>
+            </div>
+            
+            <div class="appointments-controls">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchAppointments" placeholder="Tafuta kwa namba ya simu...">
+                </div>
+                <button class="btn btn-secondary" onclick="loadAppointments()">
+                    <i class="fas fa-sync-alt"></i> Pasha Upya
+                </button>
+            </div>
+            
+            <div class="appointments-filter">
+                <button class="filter-btn active" data-status="all">Zote (<span id="countAll">0</span>)</button>
+                <button class="filter-btn" data-status="pending">Inasubiri (<span id="countPending">0</span>)</button>
+                <button class="filter-btn" data-status="confirmed">Imethibitishwa (<span id="countConfirmed">0</span>)</button>
+                <button class="filter-btn" data-status="completed">Imekamilika (<span id="countCompleted">0</span>)</button>
+                <button class="filter-btn" data-status="cancelled">Imesitishwa (<span id="countCancelled">0</span>)</button>
+            </div>
+            
+            <div class="appointments-table-container">
+                <table class="appointments-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Tarehe</th>
+                            <th>Muda</th>
+                            <th>Mgonjwa</th>
+                            <th>Daktari</th>
+                            <th>Idara</th>
+                            <th>Hali</th>
+                            <th>Vitendo</th>
+                        </tr>
+                    </thead>
+                    <tbody id="appointmentsTable">
+                        <!-- Appointments will be loaded here -->
+                    </tbody>
+                </table>
+                <div id="noAppointments" class="no-data">
+                    <i class="fas fa-calendar-times"></i>
+                    <h3>Hakuna Miadi</h3>
+                    <p>Hakuna miadi iliyopatikana. Panga miadi ya kwanza!</p>
+                    <a href="#book" class="btn btn-primary">Panga Miadi</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about-section">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-info-circle"></i> Kuhusu Mfumo Wetu</h2>
+                <p>Mfumo wa kisasa wa kusimamia miadi ya hospitali</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Haraka na Rahisi</h3>
+                    <p>Panga miadi yako kwa sekunde chache kutoka popote, wakati wowote.</p>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Salama na Ya Siri</h3>
+                    <p>Taarifa zako zinalindwa kwa usalama wa hali ya juu.</p>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-bell"></i>
+                    <h3>Arifa za Kiotomatiki</h3>
+                    <p>Pokea arifa kupitia SMS na barua pepe kabla ya miadi yako.</p>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Taarifa za Uchambuzi</h3>
+                    <p>Angalia takwimu na ripoti za matumizi ya huduma zetu.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <i class="fas fa-hospital-alt"></i>
+                        <span>Hospitali Ya Jamii</span>
+                    </div>
+                    <p>Huduma bora za afya kwa wote. Tunaamini katika afya kwa kila mtu.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Mawasiliano</h3>
+                    <p><i class="fas fa-phone"></i> 0712 345 678</p>
+                    <p><i class="fas fa-envelope"></i> info@hospitalijamii.co.tz</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Sokoine Drive, Dar es Salaam</p>
+                    <p><i class="fas fa-clock"></i> Jumaa - Ijumaa: 08:00 - 17:00</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Huduma</h3>
+                    <ul>
+                        <li><a href="#book">Kukodisha Miadi</a></li>
+                        <li><a href="#doctors">Kupata Daktari</a></li>
+                        <li><a href="#appointments">Kuangalia Miadi</a></li>
+                        <li><a href="#">Huduma ya Dharura</a></li>
+                        <li><a href="#">Malipo Mtandaoni</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Taarifa</h3>
+                    <div class="stats">
+                        <p>Miadi Imepangwa Leo: <strong id="footerTodayAppointments">0</strong></p>
+                        <p>Jumla ya Madaktari: <strong id="footerTotalDoctors">0</strong></p>
+                        <p>Wagonjwa Waliosajiliwa: <strong id="footerTotalPatients">0</strong></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Hospitali Ya Jamii. Haki zote zimehifadhiwa. | <a href="#">Sera ya Faragha</a> | <a href="#">Masharti ya Matumizi</a></p>
+                <p class="api-status">
+                    API Status: 
+                    <span id="apiStatus" class="status-indicator">
+                        <span class="dot"></span> Inajaribu...
+                    </span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-check-circle"></i> Miadi Imepangwa!</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="confirmation-icon">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <p id="confirmationMessage">Umepanga miadi kwa mafanikio!</p>
+                <div class="confirmation-details">
+                    <div class="detail-item">
+                        <span class="label">Namba ya Miadi:</span>
+                        <span id="modalAppointmentId" class="value">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Jina la Mgonjwa:</span>
+                        <span id="modalPatientName" class="value">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Daktari:</span>
+                        <span id="modalDoctorName" class="value">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Tarehe na Muda:</span>
+                        <span id="modalDateTime" class="value">-</span>
+                    </div>
+                </div>
+                <div class="confirmation-instructions">
+                    <p><i class="fas fa-info-circle"></i> Utapokea ujumbe wa uthibitisho kupitia SMS.</p>
+                    <p><i class="fas fa-clock"></i> Tafadhali wasili dakika 15 mapema.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal()">
+                    <i class="fas fa-times"></i> Funga
+                </button>
+                <button class="btn btn-primary" onclick="printConfirmation()">
+                    <i class="fas fa-print"></i> Chapisha Tiketi
+                </button>
+                <button class="btn btn-success" onclick="shareAppointment()">
+                    <i class="fas fa-share"></i> Shiriki
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Appointment Details Modal -->
+    <div id="detailsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-eye"></i> Maelezo ya Miadi</h3>
+                <button class="modal-close" onclick="closeDetailsModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="appointmentDetails">
+                    <!-- Details will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="spinner-overlay">
+        <div class="spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Inapakia...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+</body>
+</html>
